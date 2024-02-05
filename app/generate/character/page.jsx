@@ -26,6 +26,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { SidebarNav } from "@/components/sidebar"
+import { useUser } from "@auth0/nextjs-auth0/client"
 
 const profileFormSchema = z.object({
     name: z
@@ -65,6 +66,8 @@ const sidebarNavItems = [
 
 export default function Generate() {
 
+    const { user } = useUser();
+
     const form = useForm({
         resolver: zodResolver(profileFormSchema),
         defaultValues,
@@ -100,7 +103,7 @@ export default function Generate() {
 
     return (
         <div className="flex relative">
-            <aside className="w-[400px] px-6 ">
+            <aside className="w-[200px] px-6 ">
                 <SidebarNav items={sidebarNavItems} className="sticky top-0 mt-6" />
             </aside>
             <Form {...form}>
@@ -258,7 +261,7 @@ export default function Generate() {
                             Add any additoinal traits
                         </Button>
                     </div>
-                    <Button type="submit">Add Character</Button>
+                    <Button >Add Character</Button>
                 </form>
             </Form>
         </div>

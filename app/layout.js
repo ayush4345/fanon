@@ -5,6 +5,8 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,8 +19,10 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <QueryClientProvider client={queryClient}>
           <UserProvider>
-            <Navbar />
-            {children}
+            <DndProvider backend={HTML5Backend}>
+              <Navbar />
+              {children}
+            </DndProvider>
           </UserProvider>
         </QueryClientProvider >
       </body>
