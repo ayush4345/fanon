@@ -23,18 +23,21 @@ const Navbar = () => {
       <ul className="flex list-none items-center">
         {user ? (
           <li className="ml-4 flex gap-4 items-center">
-            <Button
-              onClick={() => router.push("/api/auth/logout")}
-              className="rounded-lg px-4 py-2 font-semibold text-white transition duration-300 ease-in-out"
-            >
-              Logout
-            </Button>
+            <Link href="/publish">
+              <span className="font-semibold hover:underline">Publish</span>
+            </Link>
             <Link href="/profile">
               <Avatar className="w-12 h-12">
                 <AvatarImage src={`https://api.dicebear.com/7.x/notionists/svg?seed={user?.name}`} alt="user" />
                 <AvatarFallback>FN</AvatarFallback>
               </Avatar>
             </Link>
+            <Button
+              onClick={() => router.push("/api/auth/logout")}
+              className="rounded-lg px-4 py-2 font-semibold text-white transition duration-300 ease-in-out"
+            >
+              Logout
+            </Button>
           </li>
         ) : (
           <li className="ml-4">
