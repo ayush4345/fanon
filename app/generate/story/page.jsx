@@ -342,7 +342,7 @@ function Story() {
                                     Add any additoinal features
                                 </Button>
                             </div>
-                            <Button>Generate image</Button>
+                            <Button disabled={fetchingImage ? true : false}>{fetchingImage ? "Generating ..." : "Generate image"}</Button>
                         </form>
                     </Form>
                 </ResizablePanel>

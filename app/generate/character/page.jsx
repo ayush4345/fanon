@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/select"
 import { SidebarNav } from "@/components/sidebar"
 import { useUser } from "@auth0/nextjs-auth0/client"
+import { useState } from "react"
 
 const profileFormSchema = z.object({
     name: z
@@ -67,6 +68,7 @@ const sidebarNavItems = [
 export default function Generate() {
 
     const { user } = useUser();
+    const [loading, setLoading] = useState(false)
 
     const form = useForm({
         resolver: zodResolver(profileFormSchema),
@@ -82,23 +84,26 @@ export default function Generate() {
     async function onSubmit(data) {
 
         const traitValue = fields.map((field) => field.value)
+        if (user) {
+            setLoading(true)
+            const { data: characterInfo, error } = await supabase
+                .from('character')
+                .insert([
+                    {
+                        'comic_style': data.comicStyle,
+                        'name': data.name,
+                        'accessory': data.accessory,
+                        'ethnicity': data.ethnicity,
+                        'age_group': data.age,
+                        'facial_hair': data.facialHair,
+                        'traits': traitValue,
+                        'user_email': user?.email
+                    }
+                ])
+                .select()
 
-        const { data: characterInfo, error } = await supabase
-            .from('character')
-            .insert([
-                {
-                    'comic_style': data.comicStyle,
-                    'name': data.name,
-                    'accessory': data.accessory,
-                    'ethnicity': data.ethnicity,
-                    'age_group': data.age,
-                    'facial_hair': data.facialHair,
-                    'traits': traitValue,
-                    'user_email': user?.email
-                }
-            ])
-            .select()
-
+            setLoading(false)
+        }
     }
 
     return (
@@ -261,7 +266,7 @@ export default function Generate() {
                             Add any additoinal traits
                         </Button>
                     </div>
-                    <Button >Add Character</Button>
+                    <Button disabled={loading ? true : false}>{loading ? "Adding..." : "Add Character"}</Button>
                 </form>
             </Form>
         </div>
