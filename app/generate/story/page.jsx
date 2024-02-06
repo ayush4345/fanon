@@ -83,7 +83,7 @@ function Story() {
     }
 
     const fetchData = async () => {
-        const response = await axios.post(`http://localhost:3000/api/get-characters`, {
+        const response = await axios.post(`/api/get-characters`, {
             userEmail: user?.email
         })
 
@@ -112,7 +112,7 @@ function Story() {
     let SCENE_TEXT;
 
     const fetchSceneImage = async () => {
-        const response = await axios.post(`http://localhost:3000/api/generate-image`, {
+        const response = await axios.post(`/api/generate-image`, {
             prompt: SCENE_TEXT
         })
 
@@ -182,9 +182,9 @@ function Story() {
                 direction="horizontal"
                 className=""
             >
-                <ResizablePanel defaultSize={60}>
+                <ResizablePanel defaultSize={60} className='px-6'>
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 mx-10 px-20 py-6 w-full">
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 py-6 w-full">
                             <div className='flex gap-20 w-full'>
                                 <FormField
                                     control={form.control}

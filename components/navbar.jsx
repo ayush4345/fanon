@@ -22,7 +22,7 @@ const Navbar = () => {
       </Link>
       <ul className="flex list-none items-center">
         {user ? (
-          <li className="ml-4 flex gap-4 items-center">
+          <li className="ml-4 flex gap-4 items-center text-white">
             <Link href="/publish">
               <span className="font-semibold hover:underline">Publish</span>
             </Link>
