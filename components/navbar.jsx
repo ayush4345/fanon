@@ -16,7 +16,7 @@ const Navbar = () => {
   const { user } = useUser();
 
   return (
-    <nav className="flex z-10 relative items-center bg-opacity-25 bg-gray-800 justify-between p-4 px-8">
+    <nav className="flex z-10 relative items-center bg-opacity-25 bg-gray-800 justify-between p-4 pt-2 px-8">
       <Link href="/">
         <h1 className=" text-3xl font-[Brootahh] text-black">Fanon</h1>
       </Link>

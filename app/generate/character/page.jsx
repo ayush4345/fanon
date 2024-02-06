@@ -37,8 +37,8 @@ const profileFormSchema = z.object({
         }),
     comicStyle: z
         .string({ required_error: "Please type your preferred style." }),
-    accessory: z.string().min(4),
-    ethnicity: z.string().min(4),
+    accessory: z.string().min(3),
+    ethnicity: z.string().min(3),
     age: z.string({ required_error: "Please select a age group." }),
     facialHair: z.string({ required_error: "Please select a facial hair type" }),
     triats: z
