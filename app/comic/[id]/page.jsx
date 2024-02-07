@@ -27,9 +27,10 @@ export default function Comic({ params }) {
     console.log(comicInfo?.comic[0].images)
 
     return (
-        <main>
-            <h1 className="text-2xl font-[Brootahh] font-medium w-full text-center mb-4">Your Comic Strip</h1>
-            <ScrollArea className="h-[calc(100vh-200px)]">
+        <main className="flex flex-col justify-center items-center">
+            <h1 className="text-2xl font-[Brootahh] font-medium w-full text-center">{comicInfo?.comic[0].comic_name}</h1>
+            <h3 className="mb-3 text-gray-500 font-medium">created by {comicInfo?.comic[0].author}</h3>
+            <ScrollArea className="h-[calc(100vh-140px)] w-fit border-2 p-3 rounded-md">
                 {(comicInfo && comicInfo?.comic.length > 0) && (
                     <div className="flex flex-col justify-center items-center gap-4 flex-wrap">
                         {comicInfo?.comic[0].images.map((image, index) => (
@@ -37,7 +38,7 @@ export default function Comic({ params }) {
                                 key={index}
                                 src={image}
                                 alt="comic image"
-                                className="w-[450px] h-auto object-cover mb-2"
+                                className="w-[450px] h-auto object-cover mb-1"
                             />
                         ))}
                     </div>
